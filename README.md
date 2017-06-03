@@ -8,6 +8,8 @@ This is very simple to use and all you need to do is to run `pymarkdoc` where yo
 
 `& pymarkdoc myscript.py`
 
+However every script you want to be documented has to have a docstring at the very begining of the file.
+
 ### Example
 
 This is an example on what the code below will look like when converted to markdown.
