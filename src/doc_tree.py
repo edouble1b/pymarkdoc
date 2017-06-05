@@ -22,6 +22,9 @@ def create_json(path: str) -> list:
             if file[:2] == "__" and file[-5:] == "__.py":
                 continue
 
+            if "docs" in subdir:
+                continue
+
             # Opens file and checks for docstring at the beginning
             f = open(os.path.join(subdir, file))
             data = ""
@@ -42,10 +45,19 @@ def create_json(path: str) -> list:
     return doc_tree
 
 
-def build(doc_tree: list):
+def build(doc_tree: list, doc_path: str):
     """Builds the documentation tree in the /doc directory where ran
 
     Args:
         doc_tree (list): The list used to create the doc structure
+        doc_path (str): The documentation directory path
     """
-    pass
+
+    if os.path.isdir(doc_path):
+        pass
+    else:
+        os.makedirs(doc_path)
+
+    for file in doc_tree:
+        os.makedirs(os.path.dirname(doc_path + file), exist_ok=True)
+        open(doc_path + file[:-2] + "md", "w+")
