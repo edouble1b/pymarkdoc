@@ -40,7 +40,7 @@ def create_json(path: str) -> list:
                 continue
             f.close()
 
-            doc_tree.append(os.path.join(subdir, file).replace(path, ""))
+            doc_tree.append(os.path.join(subdir, file).replace(path, "").replace(".py", ""))
 
     return doc_tree
 
@@ -60,4 +60,4 @@ def build(doc_tree: list, doc_path: str):
 
     for file in doc_tree:
         os.makedirs(os.path.dirname(doc_path + file), exist_ok=True)
-        open(doc_path + file[:-2] + "md", "w+")
+        open("{0}{1}.md".format(doc_path, file)).close()
